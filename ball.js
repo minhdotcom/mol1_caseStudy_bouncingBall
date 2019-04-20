@@ -1,12 +1,19 @@
 var ball = new function () {
-    this.radius = 10;
+    this.radius = BALL_RADIUS;
     this.x = 250;
     this.y = 250;
     this.startAngle = 0;
     this.endAngle = Math.PI * 2;
     this.color = "#0000ff"
-    this.speed = 5;
+    this.speed = BALL_SPEED;
     this.moveAngle = Math.random();
+
+    this.updatePosition = function () {
+        this.leftEdge = this.x - this.radius;
+        this.rightEdge = this.x + this.radius;
+        this.topEdge = this.y - this.radius;
+        this.bottomEdge = this.y + this.radius;
+    }
 
     this.draw = function () {
         context.clearRect(0,0, CANVAS_WIDTH, CANVAS_HEIGHT);
@@ -17,28 +24,49 @@ var ball = new function () {
         context.fill();
     }
 
-    var moveX = this.speed,
-        moveY = moveX * (1 + this.moveAngle);
+    let moveX = this.speed;
+    let moveY = moveX * (1 + this.moveAngle);;
 
-    this.moveRules = function (barEdge1, barEdge2) {
-        if (this.y > (CANVAS_HEIGHT - this.radius) && (this.x < barEdge1 || this.x > barEdge2)) {
+    this.updateMovingAngle = function () {
+        moveY = moveY / Math.abs(moveY) * Math.abs(moveX) * (1 + this.moveAngle);
+    }
+
+    this.moveRules = function (leftBarEdge, rightBarEdge) {
+        if (this.bottomEdge > CANVAS_HEIGHT && (this.leftEdge < leftBarEdge || this.rightEdge > rightBarEdge)) {
             clearInterval(interval);
             alert("Game over!");
         }
-        if ((this.y <= this.radius) ||
-            (this.y >= (CANVAS_HEIGHT - this.radius)) && (this.x >= barEdge1 && this.x <= barEdge2)
-        ) {
+        if ((this.topEdge <= 0) ||
+            (this.bottomEdge >= CANVAS_HEIGHT) && (this.leftEdge >= leftBarEdge && this.leftEdge<= rightBarEdge)) {
             moveY = - moveY;
         }
-        if (this.x <= this.radius || this.x >= (CANVAS_WIDTH - this.radius)) {
+        if (this.leftEdge <= 0 || this.rightEdge >= CANVAS_WIDTH) {
             moveX = - moveX;
+        }
+        for (let i = 0; i < bricks.length; i++) {
+            if (((this.leftEdge >= bricks[i].leftSide && this.leftEdge <= bricks[i].rightSide) ||
+                 (this.rightEdge >= bricks[i].leftSide && this.rightEdge <= bricks[i].rightSide)) &&
+                ((this.topEdge >= bricks[i].topSide && this.topEdge <= bricks[i].bottomSide) ||
+                 (this.bottomEdge >= bricks[i].topSide && this.bottomEdge <= bricks[i].bottomSide))) {
+                if (Math.min(Math.abs(bricks[i].rightSide - this.leftEdge),
+                             Math.abs(this.rightEdge - bricks[i].leftSide)) <=
+                    Math.min(Math.abs(this.bottomEdge - bricks[i].topSide),
+                             Math.abs(bricks[i].bottomSide - this.topEdge))) {
+                    moveX = - moveX;
+                } else {
+                    moveY = - moveY;
+                }
+                bricks.splice(i,1); // make crushed brick disappeared
+            }
         }
     }
 
-    this.move = function (barEdge1, barEdge2) {
-        this.moveRules(barEdge1, barEdge2);
+    this.move = function (leftBarEdge, rightBarEdge) {
+        this.updateMovingAngle();
+        this.moveRules(leftBarEdge, rightBarEdge);
         this.x -= moveX;
         this.y -= moveY;
+        this.updatePosition();
         this.draw();
     }
 }

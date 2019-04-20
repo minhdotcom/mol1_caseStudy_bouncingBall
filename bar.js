@@ -1,9 +1,11 @@
 var bar = new function () {
     this.color = "#0000ff";
-    this.height = 10;
+    this.height = BAR_HEIGHT;
     this.x = 200;
     this.y = CANVAS_HEIGHT - this.height;
-    this.width = 100;
+    this.width = BAR_WIDTH;
+    this.speed = BAR_SPEED;
+    this.accelaration = 0;
 
     this.draw = function () {
         context.beginPath();
@@ -13,32 +15,33 @@ var bar = new function () {
         context.fill();
     }
 
-    var speed = 0;
+    let moveX = 0;
 
     this.move = function () {
-        if (this.x <= 0 || this.x >= CANVAS_WIDTH - this.width) {
-            speed = - speed;
+        if (this.x < 0 || this.x > CANVAS_WIDTH - this.width) {
+            moveX = - moveX;
         }
-        this.x += speed;
+        this.x += moveX;
         this.draw();
     }
 
     this.setBarKeyBoard = function () {
         window.addEventListener("keydown", press_down, false);
+        var that = this;
         function press_down(event) {
-            var keyCode = event.which;
+            let keyCode = event.which;
             switch (keyCode) {
                 case 37:
-                    speed = -5;
+                    moveX = - that.speed;
                     break;
                 case 39:
-                    speed = +5;
+                    moveX = + that.speed;
                     break;
             }
         }
         window.addEventListener("keyup", press_up, false);
         function press_up (event) {
-            speed = 0;
+            moveX = 0;
         }
     }
 }
