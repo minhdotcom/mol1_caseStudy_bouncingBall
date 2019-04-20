@@ -11,4 +11,4 @@ const
 
 const
     BALL_RADIUS = 5,
-    BALL_SPEED = 4;
+    BALL_SPEED = 2  ;
