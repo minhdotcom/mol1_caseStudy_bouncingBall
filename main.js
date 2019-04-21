@@ -24,7 +24,7 @@ function init_game () {
         for (let i = 0; i < bricks.length; i++) {
             bricks[i].draw();
         }
-    }, 100 - GAME_RESOLUTION);
+    }, 100 - GAME_SPEED);
 }
 
 init_game();
