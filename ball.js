@@ -37,7 +37,7 @@ var ball = new function () {
             alert("Game over!");
         }
         if ((this.topEdge <= 0) ||
-            (this.bottomEdge >= CANVAS_HEIGHT) && (this.leftEdge >= leftBarEdge && this.leftEdge<= rightBarEdge)) {
+            (this.bottomEdge >= bar.y) && (this.leftEdge >= leftBarEdge && this.leftEdge<= rightBarEdge)) {
             moveY = - moveY;
         }
         if (this.leftEdge <= 0 || this.rightEdge >= CANVAS_WIDTH) {
