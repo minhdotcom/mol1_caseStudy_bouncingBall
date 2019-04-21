@@ -1,5 +1,5 @@
 const
-    GAME_RESOLUTION = 80,
+    GAME_SPEED = 80,
     CANVAS_WIDTH = 1000,
     CANVAS_HEIGHT = 500,
     BRICK_COLUMN = 20,
@@ -8,6 +8,7 @@ const
     BAR_WIDTH = 100,
     BAR_SPEED = 10,
     BAR_HEIGHT = 10,
+    BAR_ACCELERATION_MAX = 20,
 
     BALL_RADIUS = 5,
     BALL_SPEED = 2;

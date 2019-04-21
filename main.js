@@ -11,7 +11,7 @@ function init_game () {
         ball.move(bar.x, bar.x + bar.width);
         bar.move();
         if (bar.x == tempBarX) bar.accelaration = 0; else bar.accelaration ++;
-        if (bar.accelaration > 15) {bar.accelaration = 15;}
+        if (bar.accelaration > BAR_ACCELERATION_MAX) {bar.accelaration = BAR_ACCELERATION_MAX;}
         if (ball.bottomEdge >= bar.y) {
             if((bar.x - tempBarX) / (ball.x - tempBallX) > 0) {
                 ball.moveAngle -= bar.accelaration / 50;
