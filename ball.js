@@ -33,8 +33,14 @@ var ball = new function () {
 
     this.moveRules = function (leftBarEdge, rightBarEdge) {
         if (this.bottomEdge > CANVAS_HEIGHT && (this.leftEdge < leftBarEdge || this.rightEdge > rightBarEdge)) {
-            clearInterval(interval);
-            alert("Game over!");
+            // clearInterval(interval);
+            // alert("Game over!");
+            this.x = CANVAS_WIDTH / 2;
+            this.y = CANVAS_HEIGHT - 20;
+            this.moveAngle = Math.random();
+            this.speed = BALL_SPEED;
+            bar.x = CANVAS_WIDTH / 2 - BAR_WIDTH / 2;
+
         }
         if ((this.topEdge <= 0) ||
             (this.bottomEdge >= bar.y) && (this.leftEdge >= leftBarEdge && this.leftEdge<= rightBarEdge)) {
