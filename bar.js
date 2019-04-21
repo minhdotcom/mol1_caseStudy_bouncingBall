@@ -1,7 +1,7 @@
 var bar = new function () {
     this.color = "#0000ff";
     this.height = BAR_HEIGHT;
-    this.x = 200;
+    this.x = CANVAS_WIDTH / 2 - BAR_WIDTH / 2;
     this.y = CANVAS_HEIGHT - this.height;
     this.width = BAR_WIDTH;
     this.speed = BAR_SPEED;

@@ -10,7 +10,7 @@ const
     BAR_HEIGHT = 10,
 
     BALL_RADIUS = 5,
-    BALL_SPEED = 3;
+    BALL_SPEED = 2;
 
     BRICK_X_ALIGNMENT = 100;
     BRICK_Y_ALIGNMENT = 100;
