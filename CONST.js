@@ -3,7 +3,7 @@ const
     CANVAS_WIDTH = 1000,
     CANVAS_HEIGHT = 500,
     BRICK_COLUMN = 20,
-    BRICK_ROW = 10,
+    BRICK_ROW = 15,
 
     BAR_WIDTH = 100,
     BAR_SPEED = 10,
@@ -12,4 +12,5 @@ const
     BALL_RADIUS = 5,
     BALL_SPEED = 3;
 
-    BRICK_ALIGNMENT = 50;
+    BRICK_X_ALIGNMENT = 100;
+    BRICK_Y_ALIGNMENT = 100;
