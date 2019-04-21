@@ -2,8 +2,8 @@ const
     GAME_RESOLUTION = 80,
     CANVAS_WIDTH = 1000,
     CANVAS_HEIGHT = 500,
-    BRICK_NO_COLUMN = 20,
-    BRICK_NO_ROW = 15,
+    BRICK_COLUMN = 20,
+    BRICK_ROW = 10,
 
     BAR_WIDTH = 100,
     BAR_SPEED = 10,
@@ -11,3 +11,5 @@ const
 
     BALL_RADIUS = 5,
     BALL_SPEED = 3;
+
+    BRICK_ALIGNMENT = 50;

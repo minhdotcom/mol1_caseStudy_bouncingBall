@@ -1,7 +1,7 @@
 var ball = new function () {
     this.radius = BALL_RADIUS;
-    this.x = 250;
-    this.y = 250;
+    this.x = CANVAS_WIDTH / 2;
+    this.y = CANVAS_HEIGHT - 10;
     this.startAngle = 0;
     this.endAngle = Math.PI * 2;
     this.color = "#0000ff"

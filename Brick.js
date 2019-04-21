@@ -22,12 +22,12 @@ function Brick (x,y,width,height,color,health) {
 
 var bricks = [],
     brick;
-var brickY = 50;
-for (i = 1; i <= BRICK_NO_ROW; i++) {
-    var brickWidth = (CANVAS_WIDTH - 10) / BRICK_NO_COLUMN - 10,
+var brickY = BRICK_ALIGNMENT;
+for (i = 1; i <= BRICK_ROW; i++) {
+    var brickWidth = (CANVAS_WIDTH - (2 * BRICK_ALIGNMENT) + 10) / BRICK_COLUMN - 10,
         brickHeight = 10,
-        brickX = 10;
-    for (let j = 1; j <= BRICK_NO_COLUMN; j++) {
+        brickX = BRICK_ALIGNMENT;
+    for (let j = 1; j <= BRICK_COLUMN; j++) {
         brick = new Brick(brickX, brickY, brickWidth, brickHeight, "#d3d3d3", 0);
         bricks.push(brick);
         brickX += brickWidth + 10;
